@@ -1,0 +1,13 @@
+name: workflow_dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        type: string
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: echo "${{ github.event_name == 'workflow_dispatch' && inputs.tag || '' }}"
