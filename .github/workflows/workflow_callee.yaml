@@ -1,0 +1,17 @@
+name: workflow_callee
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        type: string
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo input
+        run: echo "${{ github.event_name == 'workflow_call' && inputs.tag || '' }}"
+      
+      - name: ensure secret is available
+        run: |
+          [ -n "${{ secrets.SECRET }}" ] || (echo "secrets.SECRET is empty!" && exit 1)

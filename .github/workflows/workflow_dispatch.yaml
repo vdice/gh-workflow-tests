@@ -6,8 +6,13 @@ on:
       tag:
         type: string
 jobs:
-  echo:
-    runs-on: ubuntu-latest
-    steps:
-      - name: echo
-        run: echo "${{ github.event_name == 'workflow_dispatch' && inputs.tag || '' }}"
+  call-workflow:
+    uses: ./.github/workflows/workflow_callee.yaml
+    with:
+      tag: ${{ inputs.tag }}
+
+  call-workflow-with-inherited-secrets:
+    uses: ./.github/workflows/workflow_callee.yaml
+    secrets: inherit
+    with:
+      tag: ${{ inputs.tag }}
