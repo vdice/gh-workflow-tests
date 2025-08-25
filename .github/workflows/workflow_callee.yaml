@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo input
-        run: echo "${{ github.event_name == 'workflow_call' && inputs.tag || '' }}"
+        run: echo "${{ inputs.tag }}"
       
       - name: ensure secret is available
         run: |
