@@ -3,6 +3,7 @@ name: workflow_callee
 on:
   push:
     branchs: ["main"]
+
   workflow_call:
     inputs:
       tag:
@@ -11,8 +12,10 @@ jobs:
   echo:
     runs-on: ubuntu-latest
     steps:
-      - name: echo input
-        run: echo "${{ inputs.tag }}"
+      - name: echo input (always)
+        if: ${{ github.ref == 'refs/heads/main' || inputs.tag != "" }}
+        run: |
+          echo "${{ inputs.tag }}"
       
       - name: ensure secret is available
         run: |
