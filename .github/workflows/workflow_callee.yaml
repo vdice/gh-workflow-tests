@@ -12,8 +12,8 @@ jobs:
   echo:
     runs-on: ubuntu-latest
     steps:
-      - name: echo input (always)
-        if: ${{ github.ref == 'refs/heads/main' || inputs.tag != "" }}
+      - name: echo input
+        if: ${{ github.ref == 'refs/heads/main' || inputs.tag != '' }}
         run: |
           echo "${{ inputs.tag }}"
       
