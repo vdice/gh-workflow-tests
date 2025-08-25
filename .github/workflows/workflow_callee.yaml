@@ -1,6 +1,8 @@
 name: workflow_callee
 
 on:
+  push:
+    branchs: ["main"]
   workflow_call:
     inputs:
       tag:
