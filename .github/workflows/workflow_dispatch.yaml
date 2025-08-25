@@ -8,11 +8,7 @@ on:
 jobs:
   call-workflow:
     uses: ./.github/workflows/workflow_callee.yaml
-    with:
-      tag: ${{ inputs.tag }}
-
-  call-workflow-with-inherited-secrets:
-    uses: ./.github/workflows/workflow_callee.yaml
     secrets: inherit
     with:
       tag: ${{ inputs.tag }}
+

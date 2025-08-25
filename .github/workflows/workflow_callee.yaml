@@ -15,3 +15,8 @@ jobs:
       - name: ensure secret is available
         run: |
           [ -n "${{ secrets.SECRET }}" ] || (echo "secrets.SECRET is empty!" && exit 1)
+
+      - name: github context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT" | jq
