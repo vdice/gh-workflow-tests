@@ -15,8 +15,5 @@ jobs:
           tags: tag:ci
           version: 1.78.1
 
-      - name: Show Tailscale status
-        run: tailscale status
-
-      - name: Show DNS resolution
-        run: dig +short ${{ secrets.TAILSCALE_HOST }}
+      - name: curl host
+        run: curl ${{ secrets.TAILSCALE_HOST }}
