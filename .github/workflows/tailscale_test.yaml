@@ -16,7 +16,7 @@ jobs:
           chmod +x /usr/local/bin/nomad
 
       - name: Tailscale
-        uses: tailscale/github-action@v2
+        uses: tailscale/github-action@v3
         env:
           TS_DEBUG_FIREWALL_MODE: "nftables"
         with:
