@@ -18,7 +18,7 @@ jobs:
       - name: Tailscale
         uses: tailscale/github-action@v2
         env:
-          TS_DEBUG_FIREWALL_MODE: "auto"
+          TS_DEBUG_FIREWALL_MODE: "nftables"
         with:
           oauth-client-id: ${{ secrets.TS_CI_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_CI_OAUTH_SECRET }}
