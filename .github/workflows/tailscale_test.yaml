@@ -7,6 +7,14 @@ jobs:
   tailscale:
     runs-on: ubuntu-latest
     steps:
+      - name: Install Nomad
+        env:
+          NOMAD_VERSION: "1.4.3"
+        run: |
+          curl -Os https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_$(dpkg --print-architecture).zip
+          unzip nomad_${NOMAD_VERSION}_linux_$(dpkg --print-architecture).zip -d /usr/local/bin
+          chmod +x /usr/local/bin/nomad
+
       - name: Tailscale
         uses: tailscale/github-action@v2
         with:
@@ -15,5 +23,10 @@ jobs:
           tags: tag:ci
           version: 1.78.1
 
-      - name: curl host
-        run: curl ${{ secrets.TAILSCALE_HOST }}
+      - name: Nomad status
+        env:
+          NOMAD_ADDR: ${{ secrets.NOMAD_ADDR }}
+        run: nomad status
+
+      # - name: curl host
+      #   run: curl ${{ secrets.TAILSCALE_HOST }}
