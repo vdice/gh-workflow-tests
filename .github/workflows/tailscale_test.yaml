@@ -17,13 +17,13 @@ jobs:
 
       - name: Tailscale
         uses: tailscale/github-action@v3
-        env:
-          TS_DEBUG_FIREWALL_MODE: "nftables"
         with:
           oauth-client-id: ${{ secrets.TS_CI_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_CI_OAUTH_SECRET }}
           tags: tag:ci
-          version: 1.82.5
+
+      - name: Tailscale status
+        run: tailscale status
 
       - name: Nomad status
         env:
